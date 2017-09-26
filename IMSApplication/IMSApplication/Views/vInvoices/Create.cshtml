@@ -1,0 +1,129 @@
+﻿@model IMSApplication.Models.Invoice
+
+@{
+    ViewBag.Title = "Create";
+}
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Invoice Information
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Reference</label>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Number, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Number, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @Id = "datetimepicker4", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SupplierId, "Supplier", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <select name="SupplierId" id="suppliersel" class="form-control"></select>
+                                @Html.ValidationMessageFor(model => model.SupplierId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.VendorId, "Vendor", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <select name="VendorId" id="vendorsel" class="form-control"></select>
+                                @Html.ValidationMessageFor(model => model.VendorId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Items
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Quantity</th>
+                                <th>Price (RM)</th>
+                                <th>Total</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="itemsform">
+                            <tr>
+                                <td class="col-md-4"><select id="variety" name="varieties[]" class="col-md-12 invitem varieties"></select></td>
+                                <td><input type="text" name="qtys[]" id="qtys" class="form-control invitem" value="0" /></td>
+                                <td><input type="text" name="cost[]" id="cost" class="form-control invitem" /></td>
+                                <td><input type="text" name="total[]" id="total" class="form-control invitem" /></td>
+                                <td><button class="btn btn-danger" type="button" id="removeitm">Remove</button></td>
+                            </tr>             
+                        </tbody>
+                        <tr>
+                            <td colspan="3" align="right">Grand Total</td>
+                            <td><input type="text" name="grandtotal" readonly="readonly" class="form-control"/></td>
+                            <td></td>
+                        </tr>
+                    </table>
+
+                    <button class="btn btn-info" id="addvar" type="button">Add Item</button>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <center>
+                        <input type="submit" value="Create" class="btn btn-success" />
+                        <input type="reset" value="Reset" class="btn btn-warning" />
+                        <a href="@Url.Action("Index", "Invoices")" class="btn btn-default">Cancel</a>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div style="display:none">
+    <table>
+        <tr id="sourcedata">
+            <td class="col-md-4"><select id="variety" name="varieties[]" class="col-md-12 invitem varieties"></select></td>
+            <td><input type="text" name="qtys[]" id="qtys" value="0" class="form-control invitem" /></td>
+            <td><input type="text" name="cost[]" id="cost" class="form-control invitem" /></td>
+            <td><input type="text" name="total[]" id="total" class="form-control invitem" /></td>
+            <td><button class="btn btn-danger" type="button" id="removeitm">Remove</button></td>
+        </tr>
+    </table>
+</div>
+
+@section styles {
+    @Styles.Render("~/Content/datatable");
+    @Styles.Render("~/Content/datepicker");
+    @Styles.Render("~/Content/select2");
+    }
+@section Scripts {
+    @*@Scripts.Render("~/bundles/datatable");*@
+    @Scripts.Render("~/bundles/datepicker");
+    @Scripts.Render("~/bundles/select2");
+    <script src="~/Scripts/View/vInvoices/create.js"></script>
+}

@@ -199,6 +199,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\aSuppliersController.cs" />
+    <Compile Include="Controllers\aVarietiesController.cs" />
+    <Compile Include="Controllers\aVendorsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\ChannelsController.cs" />
     <Compile Include="Controllers\ColorsController.cs" />
@@ -215,10 +218,12 @@
     <Compile Include="Controllers\TransactionsController.cs" />
     <Compile Include="Controllers\VarietiesController.cs" />
     <Compile Include="Controllers\VendorsController.cs" />
+    <Compile Include="Controllers\vInvoicesController.cs" />
     <Compile Include="Controllers\VouchersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\Control.cs" />
     <Compile Include="Migrations\201708281401028_InitialCreate.cs" />
     <Compile Include="Migrations\201708281401028_InitialCreate.Designer.cs">
       <DependentUpon>201708281401028_InitialCreate.cs</DependentUpon>
@@ -263,6 +268,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-datetimepicker.css" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\style.css" />
@@ -274,6 +283,8 @@
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\user.gif" />
     <Content Include="Content\img\user2.png" />
+    <Content Include="Content\select2\select2.css" />
+    <Content Include="Content\select2\select2.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -287,12 +298,71 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\dataTables\dataTables.bootstrap.css" />
     <Content Include="Scripts\dataTables\dataTables.bootstrap.js" />
     <Content Include="Scripts\dataTables\jquery.dataTables.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\select2\i18n\ar.js" />
+    <Content Include="Scripts\select2\i18n\az.js" />
+    <Content Include="Scripts\select2\i18n\bg.js" />
+    <Content Include="Scripts\select2\i18n\ca.js" />
+    <Content Include="Scripts\select2\i18n\cs.js" />
+    <Content Include="Scripts\select2\i18n\da.js" />
+    <Content Include="Scripts\select2\i18n\de.js" />
+    <Content Include="Scripts\select2\i18n\el.js" />
+    <Content Include="Scripts\select2\i18n\en.js" />
+    <Content Include="Scripts\select2\i18n\es.js" />
+    <Content Include="Scripts\select2\i18n\et.js" />
+    <Content Include="Scripts\select2\i18n\eu.js" />
+    <Content Include="Scripts\select2\i18n\fa.js" />
+    <Content Include="Scripts\select2\i18n\fi.js" />
+    <Content Include="Scripts\select2\i18n\fr.js" />
+    <Content Include="Scripts\select2\i18n\gl.js" />
+    <Content Include="Scripts\select2\i18n\he.js" />
+    <Content Include="Scripts\select2\i18n\hi.js" />
+    <Content Include="Scripts\select2\i18n\hr.js" />
+    <Content Include="Scripts\select2\i18n\hu.js" />
+    <Content Include="Scripts\select2\i18n\id.js" />
+    <Content Include="Scripts\select2\i18n\is.js" />
+    <Content Include="Scripts\select2\i18n\it.js" />
+    <Content Include="Scripts\select2\i18n\ja.js" />
+    <Content Include="Scripts\select2\i18n\km.js" />
+    <Content Include="Scripts\select2\i18n\ko.js" />
+    <Content Include="Scripts\select2\i18n\lt.js" />
+    <Content Include="Scripts\select2\i18n\lv.js" />
+    <Content Include="Scripts\select2\i18n\mk.js" />
+    <Content Include="Scripts\select2\i18n\ms.js" />
+    <Content Include="Scripts\select2\i18n\nb.js" />
+    <Content Include="Scripts\select2\i18n\nl.js" />
+    <Content Include="Scripts\select2\i18n\pl.js" />
+    <Content Include="Scripts\select2\i18n\pt-BR.js" />
+    <Content Include="Scripts\select2\i18n\pt.js" />
+    <Content Include="Scripts\select2\i18n\ro.js" />
+    <Content Include="Scripts\select2\i18n\ru.js" />
+    <Content Include="Scripts\select2\i18n\sk.js" />
+    <Content Include="Scripts\select2\i18n\sr-Cyrl.js" />
+    <Content Include="Scripts\select2\i18n\sr.js" />
+    <Content Include="Scripts\select2\i18n\sv.js" />
+    <Content Include="Scripts\select2\i18n\th.js" />
+    <Content Include="Scripts\select2\i18n\tr.js" />
+    <Content Include="Scripts\select2\i18n\uk.js" />
+    <Content Include="Scripts\select2\i18n\vi.js" />
+    <Content Include="Scripts\select2\i18n\zh-CN.js" />
+    <Content Include="Scripts\select2\i18n\zh-TW.js" />
+    <Content Include="Scripts\select2\select2.full.js" />
+    <Content Include="Scripts\select2\select2.full.min.js" />
+    <Content Include="Scripts\select2\select2.js" />
+    <Content Include="Scripts\select2\select2.min.js" />
+    <Content Include="Scripts\View\vInvoices\create.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -330,15 +400,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -584,6 +645,249 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Channels\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\vInvoices\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\wells.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\variables.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\utilities.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\type.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\tooltip.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\thumbnails.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\theme.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\tables.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\scaffolding.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\responsive-utilities.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\responsive-embed.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\progress-bars.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\print.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\popovers.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\panels.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\pagination.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\pager.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\normalize.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\navs.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\navbar.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\modals.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\vendor-prefixes.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\text-overflow.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\text-emphasis.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\table-row.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\tab-focus.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\size.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\responsive-visibility.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\resize.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\reset-text.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\reset-filter.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\progress-bar.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\panels.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\pagination.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\opacity.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\nav-vertical-align.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\nav-divider.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\list-group.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\labels.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\image.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\hide-text.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\grid.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\grid-framework.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\gradients.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\forms.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\clearfix.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\center-block.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\buttons.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\border-radius.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\background-variant.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins\alerts.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\mixins.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\media.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\list-group.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\labels.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\jumbotron.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\input-groups.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\grid.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\glyphicons.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\forms.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\dropdowns.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\component-animations.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\code.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\close.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\carousel.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\buttons.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\button-groups.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\breadcrumbs.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\bootstrap.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\badges.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\alerts.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\_bootstrap-datetimepicker.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-datetimepicker-build.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.css.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\vInvoices\Details.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
