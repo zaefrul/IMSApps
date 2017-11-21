@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="icon" href="~/Content/favicon.ico" type="image/x-icon">
+
+    @Styles.Render("~/Content/templatecorestyle")
+    @RenderSection("styles", required: false)
+
+</head>
+<body class="theme-red">
+    @Html.Partial("_topbar")
+    @Html.Partial("_menubar")
+    <section class="content">
+        <div class="container-fluid">
+            @RenderBody()
+        </div>
+    </section>
+
+    @Scripts.Render("~/Content/temlplatecorescript")
+    @RenderSection("scripts", required: false)
+    <script src="~/Content/js/admin.js"></script>
+    <script src="~/Content/js/pages/index.js"></script>
+    <script src="~/Content/js/demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+﻿@model IMSApps_v1.Models.Product
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@section styles {
+    <link href="~/Content/select2/select2.css" rel="stylesheet" />
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id);
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header bg-blue-grey">
+                    <h2>
+                        Product Information
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="row clearfix">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                            <label for="FirstName">Name</label>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.TextBoxFor(m => m.Name, new { @Class = "form-control", @Placeholder = "product name eg. (Blouse)" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                            <label for="FirstName">Description</label>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.TextBoxFor(m => m.Description, new { @Class = "form-control", @Placeholder = "product description" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                            <label for="FirstName">Category</label>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.TextBoxFor(m => m.Category, new { @Class = "form-control", @Placeholder = "category" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                            <label for="FirstName">Cost Price (RM)</label>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.TextBoxFor(m => m.Cost, new { @Class = "form-control", @Placeholder = "cost price eg. 20.50" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                            <label for="FirstName">Sell Price (RM)</label>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.TextBoxFor(m => m.Sell, new { @Class = "form-control", @Placeholder = "selling price eg. 60.00" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="header bg-blue-grey">
+                    <h2>Product Variety</h2>
+                </div>
+                <div class="body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="col-md-4">Color</th>
+                                <th class="col-md-4">Size</th>
+                                <th class="col-md-4">Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vartable">
+                            @foreach (var varieties in Model.Varieties)
+                            {
+                                <tr>
+                                    <td>
+                                        <input type="hidden" name="ids[]" value="@varieties.Id" />
+                                        <select class="selectcolor col-md-12" name="colors[]" data-val="@varieties.Color.Id">
+                                            <option value="@varieties.Color.Id">@varieties.Color.Label</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="selectsize col-md-12" name="sizes[]" data-val="@varieties.Size.Id">
+                                            <option value="@varieties.Size.Id">@varieties.Size.Label</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="number" name="qtys[]" class="form-control" value="@varieties.Quantity" /></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    <button type="button" id="addvariety" class="btn bg-primary btn-circle-lg waves-effect waves-circle waves-float"><i class="material-icons">add</i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="body" style="text-align:center">
+            <button type="submit" class="btn btn-success waves-effect"><i class="material-icons">save</i><span>SUBMIT</span></button>
+            <a href="@Url.Action("Index")" class="btn btn-danger waves-effect"><i class="material-icons">clear</i><span>CANCEL</span></a>
+            <a href="@Url.Action("Create")" class="btn btn-warning waves-effect"><i class="material-icons">replay</i><span>RESET</span></a>
+        </div>
+    </div>
+}
+<div style="display:none">
+    <table>
+        <tr id="factory">
+            <td><select class="col-md-12 selectcolor" name="colors[]"></select></td>
+            <td><select class="col-md-12 selectsize" name="sizes[]"></select></td>
+            <td><input type="number" name="qtys[]" class="form-control" /></td>
+        </tr>
+    </table>
+</div>
+
+
+
+@section scripts {
+    <script src="~/Content/select2/JS/select2.js"></script>
+    <script>
+        function Select2Config(URL, Placeholder)
+        {
+            return ({
+                ajax: {
+                    url: URL,
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            keyword: params.term
+                        };
+                    },
+                    processResults: function (data, params) {
+                        params.page = params.page || 1;
+                        console.log(data.results);
+                        return {
+                            results: data.results,
+                            pagination: {
+                                more: (params.page * 30) < data.total_count
+                            }
+                        };
+                    },
+                    cache: true
+                },
+                escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+                minimumInputLength: 1,
+                placeholder: Placeholder
+            })
+        }
+        var color = Select2Config('../../api/aColors', "Select a color");
+        var size = Select2Config('../../api/aSizes', "Select a size");
+        $('.selectcolor').select2(color);
+        $('.selectsize').select2(size);
+        $(document).ready(function () {
+            $(document).on('click', '#addvariety', function (args) {
+                $('select.selectcolor').select2("destroy");
+                $('select.selectsize').select2("destroy");
+                $('#factory').clone().removeAttr('id').appendTo('#vartable');
+                $('select.selectcolor').select2(color);
+                $('select.selectsize').select2(size);
+
+            });
+        });
+    </script>
+}

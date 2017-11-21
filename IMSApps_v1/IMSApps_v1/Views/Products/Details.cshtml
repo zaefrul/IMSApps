@@ -1,0 +1,179 @@
+﻿@model IMSApps_v1.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="block-header">
+    <h2>
+        Product Details
+    </h2>
+</div>
+<!-- Basic Examples -->
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header bg-blue-grey">
+                <h2>
+                    Information
+                </h2>
+            </div>
+            <div class="body">
+                <table class="table">
+                    <tr>
+                        <th>Name</th>
+                        <td>@Html.DisplayFor(model => model.Name)</td>
+                    </tr>
+                    <tr>
+                        <th>Category</th>
+                        <td>@Html.DisplayFor(model => model.Category)</td>
+                    </tr>
+                    <tr>
+                        <th>Cost Price</th>
+                        <td>RM @Html.DisplayFor(model => model.Cost)</td>
+                    </tr>
+                    <tr>
+                        <th>Selling Price</th>
+                        <td>RM @Html.DisplayFor(model => model.Sell)</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>@Html.DisplayFor(model => model.Description)</td>
+                    </tr>
+                    <tr>
+                        <th>Created By</th>
+                        <td>@Html.DisplayFor(model => model.CreatedBy)</td>
+                    </tr>
+                    <tr>
+                        <th>Created Date</th>
+                        <td>@Html.DisplayFor(model => model.CreatedDate)</td>
+                    </tr>
+                    <tr>
+                        <th>Modified By</th>
+                        <td>@Html.DisplayFor(model => model.ModifiedBy)</td>
+                    </tr>
+                    <tr>
+                        <th>Modified Date</th>
+                        <td>@Html.DisplayFor(model => model.ModifiedDate)</td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+        <div class="card">
+            <div class="header bg-blue-grey">
+                <h2>Varieties</h2>
+            </div>
+            <div class="body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Color</th>
+                            <th>Size</th>
+                            <th>Quantity</th>
+                        </tr>
+                    </thead>
+                    @for(int i=0; i<Model.Varieties.Count; i++)
+                    {
+                        <tr>
+                            <td>@Model.Varieties[i].Color.Label</td>
+                            <td>@Model.Varieties[i].Size.Label</td>
+                            <td>@Model.Varieties[i].Quantity</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+                @*<div>
+                        <h4>Product</h4>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Name)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Category)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Category)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Cost)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Cost)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Sell)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Sell)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Description)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Description)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Status)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Status)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.CreatedBy)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.CreatedBy)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.CreatedDate)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.CreatedDate)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.ModifiedBy)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.ModifiedBy)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.ModifiedDate)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.ModifiedDate)
+                            </dd>
+
+                        </dl>
+                    </div>*@
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+                    @Html.ActionLink("Back to List", "Index")
+                </p>

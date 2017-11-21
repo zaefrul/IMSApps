@@ -1,0 +1,160 @@
+﻿@model IEnumerable<IMSApps_v1.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="block-header">
+    <h2>
+        Products Information
+    </h2>
+</div>
+
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @Html.ActionLink("Create New", "Create")
+                </h2>
+            </div>
+            <div class="body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Category
+                                </th>
+                                <th>
+                                    Cost (RM)
+                                </th>
+                                <th>
+                                    Sell (RM)
+                                </th>
+                                <th>
+                                    Created By
+                                </th>
+                                <th>
+                                    Created Date
+                                </th>
+                                <th>
+                                    Modified By
+                                </th>
+                                <th>
+                                    Modified Date
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        @*<tfoot>
+                            <tr>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Category
+                                </th>
+                                <th>
+                                    Cost (RM)
+                                </th>
+                                <th>
+                                    Sell (RM)
+                                </th>
+                                <th>
+                                    Created By
+                                </th>
+                                <th>
+                                    Created Date
+                                </th>
+                                <th>
+                                    Modified By
+                                </th>
+                                <th>
+                                    Modified Date
+                                </th>
+                                <th></th>
+                            </tr>
+                        </tfoot>*@
+                        <tbody>
+                            @foreach (var item in Model)
+            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Category)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Cost)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Sell)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CreatedBy)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CreatedDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ModifiedBy)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ModifiedDate)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                @section styles{
+                    <link href="~/Content/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+                }
+                @section scripts{
+                    <script src="~/Content/plugins/jquery-datatable/jquery.dataTables.js"></script>
+                    <script src="~/Content/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+                    <script src="~/Content/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+                    <script src="~/Content/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+                    <script src="~/Content/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+                    <script src="~/Content/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+                    <script src="~/Content/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+                    <script src="~/Content/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+                    <script src="~/Content/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
+                    <script>
+                        $(function () {
+                            $('.js-basic-example').DataTable({
+                                responsive: true
+                            });
+
+                            //Exportable table
+                            $('.js-exportable').DataTable({
+                                dom: 'Bfrtip',
+                                responsive: true,
+                                buttons: [
+                                    'copy', 'csv', 'excel', 'pdf', 'print'
+                                ]
+                            });
+                        });
+                    </script>
+                }
